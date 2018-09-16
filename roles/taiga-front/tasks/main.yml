@@ -19,7 +19,7 @@
     - install
     - front-install
 
-- include: "{{ _taiga_front_install_mode }}.yml"
+- include_tasks: "{{ _taiga_front_install_mode }}.yml"
 
 - name: create plugins directory
   become: true
@@ -31,10 +31,10 @@
     - config
     - front-install
 
-- include: slack.yml
+- include_tasks: slack.yml
   when: taiga_enable_slack | bool
 
-- include: saml.yml
+- include_tasks: saml.yml
   when: taiga_enable_saml_login | bool
 
 - name: deploy configuration file

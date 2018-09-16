@@ -43,13 +43,13 @@
     _taiga_is_redis_node: "(taiga_enable_async_tasks | bool) and (taiga_back_redis_host in ['localhost', '127.0.0.1', '::1', ansible_hostname, ansible_fqdn])"
   tags: always
 
-- include: rabbitmq.yml
+- include_tasks: rabbitmq.yml
   when: _taiga_is_rabbit_node
 
-- include: redis.yml
+- include_tasks: redis.yml
   when: _taiga_is_redis_node
 
-- include: postgresql.yml
+- include_tasks: postgresql.yml
 
 - name: check out git repository
   become: true
@@ -71,7 +71,7 @@
   pip:
     requirements: "{{ taiga_user_home }}/{{ taiga_back_checkout_dir }}/requirements.txt"
     virtualenv: "{{ taiga_user_home }}/{{ taiga_back_venv_dir }}"
-    virtualenv_python: "python3.5"
+    virtualenv_python: "python3"
     state: "{{ taiga_upgrade | bool | ternary('latest', 'present') }}"
   notify:
     - "restart taiga (via {{ taiga_service_manager }})"
@@ -79,13 +79,13 @@
     - install
     - back-install
 
-- include: "slack.yml"
+- include_tasks: "slack.yml"
   when: taiga_enable_slack | bool
 
-- include: "ldap.yml"
+- include_tasks: "ldap.yml"
   when: taiga_enable_ldap_login | bool
 
-- include: "saml.yml"
+- include_tasks: "saml.yml"
   when: taiga_enable_saml_login | bool
 
 - name: deploy local settings
@@ -192,6 +192,6 @@
     - back-install
     - offline
 
-- include: "{{ taiga_service_manager }}.yml"
+- include_tasks: "{{ taiga_service_manager }}.yml"
 
-- include: "backup.yml"
+- include_tasks: "backup.yml"

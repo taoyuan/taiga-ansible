@@ -8,7 +8,7 @@
 {% endif %}
 	"debug": {{ taiga_front_debug | bool | lower }},
 	"debugInfo": false,
-	"defaultLanguage": "en",
+	"defaultLanguage": "{{taiga_default_language}}",
 	"themes": ["taiga"],
 	"defaultTheme": "taiga",
 	"publicRegisterEnabled": {{ taiga_enable_public_register | bool | lower }},

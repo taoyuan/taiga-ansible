@@ -62,7 +62,7 @@
     - back-install
     - offline
 
-- include: "restore.yml"
+- include_tasks: "restore.yml"
   when: >
     (taiga_back_restore | bool )
     and restore_file.stat.exists

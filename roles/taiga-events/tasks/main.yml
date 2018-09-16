@@ -49,4 +49,4 @@
     - install
     - events-install
 
-- include: "{{ taiga_service_manager }}.yml"
+- include_tasks: "{{ taiga_service_manager }}.yml"

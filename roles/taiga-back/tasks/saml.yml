@@ -57,4 +57,4 @@
     - back-config
     - offline
 
-- include: "saml-{{ 'signed' if taiga_ssl_key else 'selfsign'}}.yml"
+- include_tasks: "saml-{{ 'signed' if taiga_ssl_key else 'selfsign'}}.yml"

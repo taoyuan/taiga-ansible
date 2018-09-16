@@ -98,6 +98,9 @@ taiga_git_mirror: 'https://github.com/taigaio'
 # when installing?
 taiga_version: stable
 
+# What default language
+taiga_default_language: "{{ taiga_language }}"
+
 # Do we want to create name/address entries for all hosts we touch, in
 # every hosts's /etc/hosts file?
 taiga_populate_hosts: true
